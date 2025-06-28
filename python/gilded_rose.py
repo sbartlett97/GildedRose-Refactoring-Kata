@@ -1,4 +1,12 @@
-# -*- coding: utf-8 -*-
+"""
+Python implementation of the Gilded Rose Kata.
+
+I have opted for a Class based approach, extending the base functionality of the existing item class without modifying it.
+
+This allowed me to implement the individual quality rules for each type of item in isolation, which makes maintaing the code
+easier, including making it easier to add new classess to handle future functionality.
+
+"""
 from typing import Literal
 
 class GildedRose(object):
