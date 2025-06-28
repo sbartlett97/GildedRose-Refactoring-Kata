@@ -27,29 +27,31 @@ class StandardItem(Item):
 
     def update_quality(self):
         if self.sell_in > 0 and self.quality > 0:
-            self.quality -= 1
+            self.quality = self.quality - 1 if self.quality > 1 else 0
         elif self.sell_in <= 0 and self.quality > 0:
-            self.quality -= 2
+            self.quality = self.quality - 2 if self.quality > 2 else 0
+        else:
+            self.quality = 0
         self.sell_in -= 1
     
 class MaturingItem(StandardItem):
 
     def update_quality(self):
-        if self.sell_in > 0 and self.quality < 50:
-            self.quality += 1
+        if self.sell_in >= 0 and self.quality < 50:
+            self.quality = self.quality + 1 if self.quality < 49 else 50
         self.sell_in -= 1
 
 
 class BackstagePassesItem(StandardItem):
 
     def update_quality(self):
-        if self.sell_in < 11 and self.quality < 50:
-            self.quality += 2
-        if self.sell_in < 6 and self.quality < 50:
-            self.quality += 3
-        elif self.quality < 50:
-            self.quality += 1
-        else:
+        if self.sell_in > 10 and self.quality < 50:
+            self.quality = self.quality + 1 if self.quality < 49 else 50
+        if self.sell_in < 11 and self.sell_in > 5 and self.quality < 50:
+            self.quality = self.quality + 2 if self.quality < 49 else 50
+        elif self.sell_in < 6 and self.sell_in > 0 and self.quality < 50:
+            self.quality = self.quality + 3 if self.quality < 48 else 50
+        elif self.sell_in <= 0:
             self.quality = 0
         self.sell_in -= 1
 
@@ -65,7 +67,9 @@ class ConjuredItem(StandardItem):
 
     def update_quality(self):
         if self.sell_in > 0 and self.quality > 0:
-            self.quality -= 2
+            self.quality = self.quality - 2 if self.quality > 2 else 0
         elif self.sell_in <= 0 and self.quality > 0:
-            self.quality -= 4
+            self.quality = self.quality - 4 if self.quality > 4 else 0
+        else:
+            self.quality = 0
         self.sell_in -= 1
