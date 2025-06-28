@@ -7,11 +7,10 @@ class GildedRose(object):
 
     def update_quality(self):
         for item in self.items:
-            if item.name != "Aged Brie" and item.name != "Backstage passes to a TAFKAL80ETC concert":
+            if item.type == "standard":
                 if item.quality > 0:
-                    if item.name != "Sulfuras, Hand of Ragnaros":
-                        item.quality = item.quality - 1
-            else:
+                    item.quality = item.quality - 1
+            elif item.type == "maturing":
                 if item.quality < 50:
                     item.quality = item.quality + 1
                     if item.name == "Backstage passes to a TAFKAL80ETC concert":
@@ -72,4 +71,13 @@ class MaturingItem(Item):
     def __repr__(self):
         return "%s, %s, %s, %s" % (self.name, self.sell_in, self.quality, self.type)
     
-class BackstageItem(Item):
+    
+class BackstagePasses(Item):
+    def __init__(self, name, sell_in, quality):
+        super().__init__(name, sell_in, quality)
+        self.type = "backstage_passes"
+
+    def __repr__(self):
+        return "%s, %s, %s, %s" % (self.name, self.sell_in, self.quality, self.type)
+
+    
