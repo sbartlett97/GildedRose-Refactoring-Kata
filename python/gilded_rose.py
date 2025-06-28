@@ -27,6 +27,11 @@ class GildedRose(object):
                     item.quality = 0
             elif item.type == "legendary":
                 pass
+            elif item.type == "conjured":
+                if item.sell_in > 0 and item.quality > 0:
+                    item.quality -= 2
+                elif item.sell_in <= 0 and item.quality > 0:
+                    item.quality -= 4
 
 
 class Item:
