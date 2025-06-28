@@ -35,6 +35,13 @@ class GildedRose(object):
                         item.quality = item.quality + 1
 
 
+class ItemTypes:
+    STANDARD = "standard"
+    MATURING = "maturing"
+    LEGENDARY = "legendary"
+    BACKSTAGE_PASSES = "backstage_passes"
+    
+
 class Item:
     def __init__(self, name, sell_in, quality):
         self.name = name
@@ -45,39 +52,11 @@ class Item:
         return "%s, %s, %s" % (self.name, self.sell_in, self.quality)
     
 
-class StandardItem(Item):
-    def __init__(self, name, sell_in, quality):
+class ExtendedItem(Item):
+    def __init__(self, name, sell_in, quality, type):
         super().__init__(name, sell_in, quality)
-        self.type = "standard"
+        self.type = type
 
     def __repr__(self):
         return "%s, %s, %s, %s" % (self.name, self.sell_in, self.quality, self.type)
-
-
-class LegendaryItem(Item):
-    def __init__(self, name, sell_in, quality): 
-        super().__init__(name, sell_in, quality)
-        self.type = "legendary"
-
-    def __repr__(self):
-        return "%s, %s, %s, %s" % (self.name, self.sell_in, self.quality, self.type)
-    
-
-class MaturingItem(Item):
-    def __init__(self, name, sell_in, quality):
-        super().__init__(name, sell_in, quality)
-        self.type = "maturing"
-
-    def __repr__(self):
-        return "%s, %s, %s, %s" % (self.name, self.sell_in, self.quality, self.type)
-    
-    
-class BackstagePasses(Item):
-    def __init__(self, name, sell_in, quality):
-        super().__init__(name, sell_in, quality)
-        self.type = "backstage_passes"
-
-    def __repr__(self):
-        return "%s, %s, %s, %s" % (self.name, self.sell_in, self.quality, self.type)
-
     
