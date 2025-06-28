@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+from typing import Literal
 
 class GildedRose(object):
 
@@ -28,13 +29,6 @@ class GildedRose(object):
                 pass
 
 
-class ItemTypes:
-    STANDARD = "standard"
-    MATURING = "maturing"
-    LEGENDARY = "legendary"
-    BACKSTAGE_PASSES = "backstage_passes"
-
-
 class Item:
     def __init__(self, name, sell_in, quality):
         self.name = name
@@ -46,7 +40,7 @@ class Item:
     
 
 class ExtendedItem(Item):
-    def __init__(self, name: str, sell_in: int, quality: int, type: str):
+    def __init__(self, name: str, sell_in: int, quality: int, type: Literal["standard", "maturing", "backstage_passes", "legendary", "conjured"]):
         super().__init__(name, sell_in, quality)
         self.type = type
 
