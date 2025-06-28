@@ -22,6 +22,7 @@ class Item:
     
 
 class StandardItem(Item):
+    """Enhanced item class that applies standard quality rules"""
     def __init__(self, name: str, sell_in: int, quality: int):
         super().__init__(name, sell_in, quality)
 
@@ -35,7 +36,7 @@ class StandardItem(Item):
         self.sell_in -= 1
     
 class MaturingItem(StandardItem):
-
+    """Enhanced item class that applies maturing quality rules"""
     def update_quality(self):
         if self.sell_in >= 0 and self.quality < 50:
             self.quality = self.quality + 1 if self.quality < 49 else 50
@@ -43,7 +44,7 @@ class MaturingItem(StandardItem):
 
 
 class BackstagePassesItem(StandardItem):
-
+    """Enhanced item class that applies backstage passes quality rules"""
     def update_quality(self):
         if self.sell_in > 10 and self.quality < 50:
             self.quality = self.quality + 1 if self.quality < 49 else 50
@@ -56,7 +57,7 @@ class BackstagePassesItem(StandardItem):
         self.sell_in -= 1
 
 class LegendaryItem(StandardItem):
-
+    """Enhanced item class that applies legendary quality rules"""
     def __init__(self, name: str, sell_in: int, quality: int):
         super().__init__(name, 0, 80)
 
@@ -64,7 +65,7 @@ class LegendaryItem(StandardItem):
         pass
     
 class ConjuredItem(StandardItem):
-
+    """Enhanced item class that applies conjured quality rules"""
     def update_quality(self):
         if self.sell_in > 0 and self.quality > 0:
             self.quality = self.quality - 2 if self.quality > 2 else 0
