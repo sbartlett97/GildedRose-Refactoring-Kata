@@ -40,7 +40,7 @@ class ItemTypes:
     MATURING = "maturing"
     LEGENDARY = "legendary"
     BACKSTAGE_PASSES = "backstage_passes"
-    
+
 
 class Item:
     def __init__(self, name, sell_in, quality):
@@ -53,7 +53,7 @@ class Item:
     
 
 class ExtendedItem(Item):
-    def __init__(self, name, sell_in, quality, type):
+    def __init__(self, name: str, sell_in: int, quality: int, type: str):
         super().__init__(name, sell_in, quality)
         self.type = type
 
